@@ -5,7 +5,8 @@ import {
     TextInput,
     TouchableOpacity,
     Text,
-    ToastAndroid
+    ToastAndroid,
+    KeyboardAvoidingView
 } from 'react-native';
 import AppHeader from '../components/AppHeader';
 import firebase from 'firebase';
@@ -32,13 +33,14 @@ export default class WriteStoryScreen extends React.Component{
                 author:'',
                 story:''
             })
+            ToastAndroid.show("Your Story is Submmited", ToastAndroid.SHORT)
         }else{
-            ToastAndroid.show("Some box is empty Or the story is Submmited", ToastAndroid.SHORT)
+            ToastAndroid.show("Some box is empty Or the Story is Submmitted", ToastAndroid.SHORT)
         }
     }
     render(){
         return(
-            <View>
+            <KeyboardAvoidingView behavior="padding"enabled>
                 <AppHeader/>
                 <View style={{alignItems:'center'}}>
                     <TextInput style={style.inputbox} placeholder={"Story Title"} onChangeText={text=>{this.setState({title:text})}}></TextInput>
@@ -48,7 +50,7 @@ export default class WriteStoryScreen extends React.Component{
                         <Text style={style.buttontext}>Submit</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }

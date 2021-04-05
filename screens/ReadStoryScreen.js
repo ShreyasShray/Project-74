@@ -23,17 +23,6 @@ export default class ReadStoryScreen extends React.Component{
             })
         })
     }
-    handleSearch=async(text)=>{
-        
-        var  newData = null;
-        this.state.allStories.map((item)=>{
-            if(item.Title === text || item.Author === text){
-                newData = item
-            }
-        })
-        this.setState({afterSearch:newData})
-        console.log(newData, this.state.afterSearch)
-    }
     render(){
         return(
             <View>

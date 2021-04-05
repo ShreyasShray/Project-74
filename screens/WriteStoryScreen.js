@@ -6,10 +6,10 @@ import {
     TouchableOpacity,
     Text,
     ToastAndroid,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    ScrollView
 } from 'react-native';
 import AppHeader from '../components/AppHeader';
-import firebase from 'firebase';
 import db from '../config';
 
 export default class WriteStoryScreen extends React.Component{
@@ -42,6 +42,7 @@ export default class WriteStoryScreen extends React.Component{
         return(
             <KeyboardAvoidingView behavior="padding"enabled>
                 <AppHeader/>
+                <ScrollView>
                 <View style={{alignItems:'center'}}>
                     <TextInput style={style.inputbox} placeholder={"Story Title"} onChangeText={text=>{this.setState({title:text})}}></TextInput>
                     <TextInput style={style.inputbox} placeholder={"Author"} onChangeText={text=>{this.setState({author:text})}}></TextInput>
@@ -50,6 +51,7 @@ export default class WriteStoryScreen extends React.Component{
                         <Text style={style.buttontext}>Submit</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             </KeyboardAvoidingView>
         );
     }

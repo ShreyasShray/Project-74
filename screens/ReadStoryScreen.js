@@ -3,11 +3,11 @@ import {
     View,
     StyleSheet,
     Text,
-    ScrollView
+    FlatList
 } from 'react-native';
 import AppHeader from '../components/AppHeader';
 import db from '../config'
-
+ 
 export default class ReadStoryScreen extends React.Component{
     constructor(props){
         super(props)
@@ -19,7 +19,7 @@ export default class ReadStoryScreen extends React.Component{
         const queries = await db.collection("Stories").limit(10).get()
         queries.docs.map((doc)=>{
             this.setState({
-                allStories:[...this.state.allStories, doc.data()] 
+                allStories:[...this.state.allStories, doc.data()]
             })
         })
     }
@@ -27,16 +27,15 @@ export default class ReadStoryScreen extends React.Component{
         return(
             <View>
                 <AppHeader/>
-                <ScrollView>
-                    {this.state.allStories.map((items, index)=>{
-                        return(
-                            <View key={index} style={style.storyContainer}>
-                                <Text style={{fontWeight:'bold'}}>{"Story Title :  " + items.Title}</Text>
-                                <Text style={{fontWeight:'bold'}}>{"Author       :  " + items.Author}</Text>
-                            </View>
-                        );
-                    })}
-                </ScrollView>
+                <FlatList
+                    data={this.state.allStories} renderItem={({item})=>(
+                        <View style={{borderWidth:1.4, marginLeft:5, marginRight:5, marginTop:6, paddingLeft:4, backgroundColor:'pink'}}>
+                            <Text>Title: {item.Title}</Text>
+                            <Text>Author: {item.Author}</Text>
+                        </View>
+                    )}
+                    keyExtractor={(item, index)=>index.toString()}
+                ></FlatList>
             </View>
         );
     }

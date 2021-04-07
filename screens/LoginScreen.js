@@ -45,8 +45,8 @@ export default class LoginScreen extends React.Component{
                 <AppHeader/>
                 <View style={styles.boxContainer}>
                 <Image source={require('../assets/bed.png')} style={{width:300, height:93, borderWidth:2, borderRadius:20, marginTop:30}}/>
-                    <TextInput style={styles.inputBox} placeholder="Enter your registered Email" onChangeText={(text)=>{this.setState({emailId:text})}}></TextInput>
-                    <TextInput style={styles.inputBox} placeholder="Enter your Password" onChangeText={(text)=>{this.setState({password:text})}}></TextInput>
+                    <TextInput style={styles.inputBox} placeholder="Enter your registered Email" onChangeText={(text)=>{this.setState({emailId:text})}} keyboardType="email-address"></TextInput>
+                    <TextInput style={styles.inputBox} placeholder="Enter your Password" onChangeText={(text)=>{this.setState({password:text})}} secureTextEntry={true}></TextInput>
                     <TouchableOpacity style={styles.buttonStyle} onPress={()=>{this.Login(this.state.emailId, this.state.password)}}>
                         <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
